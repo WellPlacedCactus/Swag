@@ -15,7 +15,6 @@ class Part {
 	}
 	collide0() {
 		const k = 1;
-
 		if (this.x - this.r < 0) {
 			this.vx *= -k;
 			this.x = this.r;
@@ -44,6 +43,7 @@ class Part {
 	color() {
 		this.c.r = 255 * this.x / canvas.width;
 		this.c.g = 255 * this.y / canvas.height;
+		// this.c.b = 255 * this.y / canvas.height;
 	}
 	decay() {
 		this.c.a -= 1;
@@ -52,7 +52,7 @@ class Part {
 	tick() {
 		this.move();
 		this.collide0();
-		this.decay();
+		this.color();
 	}
 	draw() {
 		// c.fillStyle = this.c.toString();

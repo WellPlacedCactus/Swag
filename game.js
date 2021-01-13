@@ -2,13 +2,13 @@
 const game = function() {
 
 	const parts = [];
-	for (let i = 0; i < 10; i++) {
+	for (let i = 0; i < 5; i++) {
 		parts.push(new Part(
 			randi(0, canvas.width),
 			randi(0, canvas.height),
-			randi(10, 20),
-			randi(5, 7) * rands(),
-			randi(5, 7) * rands()
+			randi(25, 50),
+			randi(2, 5) * rands(),
+			randi(2, 5) * rands()
 		));
 	}
 
