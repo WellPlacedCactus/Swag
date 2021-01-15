@@ -9,6 +9,13 @@ class Part {
 		this.c = new Color(255, 255, 255, 255);
 		this.dead = false;
 	}
+	rasengan() {
+		const dx = this.x - canvas.width / 2;
+		const dy = this.y - canvas.height / 2;
+		const a = Math.atan2(dy, dx);
+		this.vx -= Math.cos(a);
+		this.vy -= Math.sin(a);
+	}
 	move() {
 		this.x += this.vx;
 		this.y += this.vy;
@@ -43,23 +50,18 @@ class Part {
 	color() {
 		this.c.r = 255 * this.x / canvas.width;
 		this.c.g = 255 * this.y / canvas.height;
-		// this.c.b = 255 * this.y / canvas.height;
 	}
 	decay() {
 		this.c.a -= 1;
 		if (this.c.a < 0) this.dead = true;
 	}
 	tick() {
+		this.rasengan();
 		this.move();
-		this.collide0();
+		this.collide1();
 		this.color();
 	}
 	draw() {
-		// c.fillStyle = this.c.toString();
-		// c.beginPath();
-		// c.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-		// c.fill();
-
 		c.fillStyle = this.c.toString();
 		c.fillRect(
 			this.x - this.r,

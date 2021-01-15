@@ -2,14 +2,18 @@
 const game = function() {
 
 	const parts = [];
-	for (let i = 0; i < 5; i++) {
-		parts.push(new Part(
-			randi(0, canvas.width),
-			randi(0, canvas.height),
-			randi(25, 50),
-			randi(2, 5) * rands(),
-			randi(2, 5) * rands()
-		));
+	const ck = new Clock(1, 10);
+
+	const emit = function() {
+		if (ck.tick()) {
+			parts.push(new Part(
+				randi(0, canvas.width),
+				randi(0, canvas.height),
+				5,
+				0,
+				0
+			));
+		}
 	}
 
 	const tick = function() {
@@ -23,7 +27,6 @@ const game = function() {
 	}
 	
 	const draw = function() {
-		clear();
 		parts.forEach(p => {
 			p.draw();
 		});
@@ -35,7 +38,9 @@ const game = function() {
 	}
 
 	const loop = function() {
+		emit();
 		tick();
+		clear();
 		draw();
 	}
 
